@@ -1,11 +1,11 @@
 from circleshape import CircleShape
-from constants import SHOT_RADIUS, COLOR_WHITE
+from constants import SHOT_RADIUS
 import pygame
 from constants import LINE_WIDTH, SHOOT_TIME_TO_LIVE
-
+from colors import COLOR_YELLOW
 class Shot(CircleShape):
     def __init__(self, x: float, y: float) -> None:
-        super().__init__(x, y, SHOT_RADIUS, color=(255,255,0))
+        super().__init__(x, y, SHOT_RADIUS, color=COLOR_YELLOW)
         self.time_to_live = SHOOT_TIME_TO_LIVE
 
     def draw(self, screen: pygame.Surface) -> None:

@@ -1,5 +1,6 @@
 import pygame
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT, COLOR_WHITE
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from colors import COLOR_WHITE
 from math import sqrt
 
 
