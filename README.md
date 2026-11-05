@@ -1,6 +1,8 @@
 # Asteroid
 
-A small Asteroids-style game built with Python and Pygame.
+enhacement of the asteroid game created under the "Build Asteroids using Python and Pygame" from boot.dev
+Added an intro screen, score during gameplay and a game over screen
+
 
 ## Requirements
 

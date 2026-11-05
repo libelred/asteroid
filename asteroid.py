@@ -1,15 +1,16 @@
 from circleshape import CircleShape
-from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS, SPLIT_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import LINE_WIDTH, ASTEROID_MIN_RADIUS, SPLIT_SPEED, SCREEN_WIDTH, SCREEN_HEIGHT, ASTEROID_BASE_SCORE, ASTEROID_KINDS
 from colors import COLOR_WHITE
 from logger import log_event
 import pygame
 import random
 
 class Asteroid(CircleShape):
-    def __init__(self, x: float, y: float, radius: float) -> None:
+    def __init__(self, x: float, y: float, radius: float, score_multiplier: float) -> None:
         super().__init__(x, y, radius, color=COLOR_WHITE)
         self.split_speed = SPLIT_SPEED
         self.move_boundaries = False
+        self.score = ASTEROID_BASE_SCORE * score_multiplier
 
     def draw(self, screen: pygame.Surface) -> None:
         pygame.draw.circle(screen, self.color, self.position, self.radius, LINE_WIDTH)
@@ -42,7 +43,10 @@ class Asteroid(CircleShape):
         vel1=self.velocity.rotate(rndm)
         vel2=self.velocity.rotate(-rndm)
         radius=self.radius - ASTEROID_MIN_RADIUS
-        a1=Asteroid(self.position.x, self.position.y, radius)
+        a1=Asteroid(self.position.x, self.position.y, radius,(ASTEROID_KINDS - (radius / ASTEROID_MIN_RADIUS) + 1))
         a1.velocity=vel1*self.split_speed
-        a2=Asteroid(self.position.x, self.position.y, radius)
+        a2=Asteroid(self.position.x, self.position.y, radius,(ASTEROID_KINDS - (radius / ASTEROID_MIN_RADIUS) + 1))
         a2.velocity=vel2*self.split_speed
+    
+    def get_score(self) -> int:
+        return self.score
